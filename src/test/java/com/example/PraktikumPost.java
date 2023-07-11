@@ -9,7 +9,7 @@ import java.io.File;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-public class PraktikumNew {
+public class PraktikumPost {
 
     @Before
     public void setUp() {
@@ -18,6 +18,9 @@ public class PraktikumNew {
     @Test
     public void createNewPlaceAndCheckResponse(){
         File json = new File("src/test/resources/newCard.json");
+        // Если JSON небольшой, его можно передать в тело запроса через строковую переменную, а не в файле
+        // String json = "{\"name\": \"Очень интересное место\", \"link\": \"https://code.s3.yandex.net/qa-automation-engineer/java/files/paid-track/sprint1/photoSelenide.jpg\"}";
+        // кавычки в строке нужно экранировать — добавить перед ними символ \
         Response response =
                 given()
                         .header("Content-type", "application/json")

@@ -14,7 +14,7 @@ import static io.restassured.RestAssured.*;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 
-public class Praktikum {
+public class PraktikumGet {
 
     // аннотация Before показывает, что метод будет выполняться перед каждым тестовым методом
     @Before

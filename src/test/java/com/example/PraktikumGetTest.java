@@ -42,7 +42,7 @@ public class PraktikumGetTest {
         given()
                 .auth().oauth2("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDdjYjAxYjQzNDI0NDAwM2QyNzc2MDgiLCJpYXQiOjE2ODkwMTA4NjksImV4cCI6MTY4OTYxNTY2OX0.O8yihtJxJm8UhdE5yG0BqspJS34UZUrojaWmDHFCV8Q")
                 .get("/api/users/me")
-                .then().assertThat().body("data.name", equalTo("Жак-Ив Кусто Кусто ж"));
+                .then().assertThat().body("data.name", equalTo("Василий Васильев"));
     }
 
     @Test
@@ -73,7 +73,7 @@ public class PraktikumGetTest {
         Response response = given().auth().oauth2("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDdjYjAxYjQzNDI0NDAwM2QyNzc2MDgiLCJpYXQiOjE2ODkwMTA4NjksImV4cCI6MTY4OTYxNTY2OX0.O8yihtJxJm8UhdE5yG0BqspJS34UZUrojaWmDHFCV8Q")
                 .get("/api/users/me");
         // проверяет, что в теле ответа ключу about соответствует нужное занятие
-        response.then().assertThat().body("data.about",equalTo("Тестировщик"));
+        response.then().assertThat().body("data.about",equalTo("Самый крутой исследователь"));
         // выводит тело ответа на экран
         System.out.println(response.body().asString());
 

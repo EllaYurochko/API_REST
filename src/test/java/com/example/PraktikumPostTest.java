@@ -9,7 +9,7 @@ import java.io.File;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-public class PraktikumPost {
+public class PraktikumPostTest {
 
     @Before
     public void setUp() {

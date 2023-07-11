@@ -9,7 +9,7 @@ import java.io.File;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
-public class PraktikumPatch {
+public class PraktikumPatchTest {
     @Before
     public void setUp() {
         RestAssured.baseURI = "https://qa-mesto.praktikum-services.ru";

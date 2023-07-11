@@ -14,6 +14,7 @@ public class ProfileTest {
         RestAssured.baseURI = "https://qa-mesto.praktikum-services.ru";
     }
 
+    @Test
     public void updateProfile() {
         Profile profile  = new Profile("Василий Васильев", "Самый крутой исследователь"); // создай объект, который соответствует JSON
         given()

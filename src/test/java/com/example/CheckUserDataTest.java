@@ -17,7 +17,7 @@ public class CheckUserDataTest {
     @Test
     public void checkUserName() {
         User user = given()
-                .auth().oauth2("введи_сюда_свой_токен")
+                .auth().oauth2("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDdjYjAxYjQzNDI0NDAwM2QyNzc2MDgiLCJpYXQiOjE2ODkwMTA4NjksImV4cCI6MTY4OTYxNTY2OX0.O8yihtJxJm8UhdE5yG0BqspJS34UZUrojaWmDHFCV8Q")
                 .get("/api/users/me")
                 // напиши код для десериализации ответа в объект типа User
                 .body().as(User.class);

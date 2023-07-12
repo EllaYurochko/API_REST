@@ -22,7 +22,7 @@ public class CardTest {
                 .header("Content-type", "application/json")
                 .auth().oauth2("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDdjYjAxYjQzNDI0NDAwM2QyNzc2MDgiLCJpYXQiOjE2ODkwMTA4NjksImV4cCI6MTY4OTYxNTY2OX0.O8yihtJxJm8UhdE5yG0BqspJS34UZUrojaWmDHFCV8Q")
                 .and()
-// сюда передали созданный объект с нужными значениями полей
+        // сюда передали созданный объект с нужными значениями полей
                 .body(card)
                 .when()
                 .post("/api/cards");
@@ -46,5 +46,28 @@ public class CardTest {
                     .post("/api/cards") // отправка POST-запроса
                     .then().statusCode(201); // проверка кода ответа
         }
+    }
+
+    @Test
+    public void likeTheFirstPhoto() {
+        String oauthToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDdjYjAxYjQzNDI0NDAwM2QyNzc2MDgiLCJpYXQiOjE2ODkwMTA4NjksImV4cCI6MTY4OTYxNTY2OX0.O8yihtJxJm8UhdE5yG0BqspJS34UZUrojaWmDHFCV8Q";
+
+        // получение списка фотографий и сохранение _id первой фотографии
+        String photoId = given()
+                .auth().oauth2(oauthToken) // аутентификация при выполнении запроса
+                .get("/api/cards") // отправка GET-запроса
+                .then().extract().body().path("data[0]._id"); // получение ID фотографии из массива данных
+
+        // лайк первой фотографии
+        given()
+                .auth().oauth2(oauthToken) // аутентификация при выполнении запроса
+                .put("/api/cards/{photoId}/likes", photoId) // отправка PUT-запроса
+                .then().assertThat().statusCode(200); // проверка, что сервер вернул код 200
+
+        // снять лайк с первой фотографии
+        given()
+                .auth().oauth2(oauthToken) // аутентификация при выполнении запроса
+                .delete("/api/cards/{photoId}/likes", photoId) // отправка DELETE-запроса
+                .then().assertThat().statusCode(200); // проверка, что сервер вернул код 200
     }
 }

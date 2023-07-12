@@ -30,4 +30,21 @@ public class CardTest {
                 .and()
                 .statusCode(201);
     }
+
+    @Test
+    public void createNewCard2() {
+        for (int i = 0; i < 10; i++) {
+            Card card = new Card(String.format("%s-%d", "Москва", i),
+                    "https://code.s3.yandex.net/qa-automation-engineer/java/files/paid-track/sprint1/photoSelenium.jpg"); // экземпляр класса Card со значениями полей
+
+            given()
+                    .header("Content-type", "application/json") // передача Content-type в заголовке для указания типа файла
+                    .auth().oauth2("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDdjYjAxYjQzNDI0NDAwM2QyNzc2MDgiLCJpYXQiOjE2ODkwMTA4NjksImV4cCI6MTY4OTYxNTY2OX0.O8yihtJxJm8UhdE5yG0BqspJS34UZUrojaWmDHFCV8Q") // передача токена для аутентификации
+                    .and()
+                    .body(card) // передача объекта с данными
+                    .when()
+                    .post("/api/cards") // отправка POST-запроса
+                    .then().statusCode(201); // проверка кода ответа
+        }
+    }
 }
